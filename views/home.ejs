@@ -1,8 +1,15 @@
-<%- include('header'); -%>
+<%- include('partials/header'); -%>
 <h1>
     HOME.
 </h1>
+<hr>
+<% postData.forEach(function(post){ %>
+<h2><%= post.title %> </h2>
 <p>
-    <%= home %> 
+    <%= post.content %> 
 </p>
-<%- include('footer'); -%>
+<% }) %>
+<hr>
+<p><h4>Compose a new blog</h4> <a href="/compose" class="btn btn-default btn-success " >Compose</a></p>
+
+<%- include('partials/footer'); -%>
