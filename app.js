@@ -35,15 +35,22 @@ app.get("/", function(req, res){
 
 app.get("/posts/:post_name", function(req, res){
     const requested=_.lowerCase(req.params.post_name);
-    var link="";
+    var link={
+        title: "",
+        content: ""
+    };
     posts.forEach(function(post){
         if(_.lowerCase(post.title)==requested){
-            link=post.title;
+            link=post;
         }
     });
-    if(link=="") console.log("not found");
-    else console.log("found");
-    res.redirect("/");
+    if(link.title==""){
+        console.log("not found");
+        res.redirect("/");
+    }
+    else {
+        res.render("post", {post:link});
+    }
 });
 
 app.post("/", function(req, res){
